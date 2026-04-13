@@ -1,0 +1,7 @@
+Django>=6.0.4,<6.1
+Pillow>=10.3.0
+torch>=2.7.0
+torchvision>=0.22.0
+numpy>=1.26.0
+uvicorn[standard]>=0.34.0
+timm @ git+https://github.com/huggingface/pytorch-image-models.git

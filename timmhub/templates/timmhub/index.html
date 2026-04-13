@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Django 6 + timm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f6f8fb; color: #1e293b; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    label { display:block; margin-top: 14px; font-weight: 700; }
+    input, select { width: 100%; margin-top: 6px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; }
+    button { margin-top: 20px; padding: 12px 18px; border: 0; border-radius: 10px; background: #1d4ed8; color: white; font-weight: 700; cursor: pointer; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 12px; overflow: auto; }
+    .tags { display:flex; flex-wrap:wrap; gap: 8px; margin-top: 16px; }
+    .tag { background:#e2e8f0; border-radius:999px; padding:6px 10px; font-size:12px; }
+    .error { color: #b91c1c; font-weight: 700; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Django 6 + timm starter</h1>
+    <p>Classification, embedding et feature maps avec un modèle <code>timm</code> préentraîné.</p>
+    <div class="grid">
+      <div class="card">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Lancer l’inférence</button>
+        </form>
+        <div class="tags">
+          {% for model_name in suggested_models %}<span class="tag">{{ model_name }}</span>{% endfor %}
+        </div>
+      </div>
+      <div class="card">
+        <h2>Résultat</h2>
+        {% if error %}
+          <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if result %}
+          <pre>{{ result|safe }}</pre>
+        {% else %}
+          <p>Aucun résultat pour le moment.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

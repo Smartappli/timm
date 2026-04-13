@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartappli-timm-web
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_DEBUG: "1"
+      DJANGO_SECRET_KEY: "change-me"
+      DJANGO_ALLOWED_HOSTS: "127.0.0.1,localhost"
+      DJANGO_CSRF_TRUSTED_ORIGINS: "http://127.0.0.1:8000,http://localhost:8000"
+      DJANGO_TIME_ZONE: "Europe/Brussels"
+      TIMM_DEFAULT_MODEL: "mobilenetv3_large_100"
+    restart: unless-stopped
